@@ -1,0 +1,78 @@
+body {
+  height: 100vh;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+img {
+  user-select: none;
+  border-radius: 3px;
+  width: 450px;
+}
+
+.login-wrapper {
+  padding: 50px;
+}
+
+.login-wrapper h2 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+input {
+  width: 220px;
+  margin-bottom: 15px;
+}
+
+input:focus {
+  border: 1px solid black;
+  border-color: rgba(82, 168, 236, 0.8);
+  box-shadow: 0 0px 0px rgba(82, 168, 236, 0.8) inset,
+    0 0 3px rgba(82, 168, 236, 0.8);
+  outline: 0 none;
+}
+
+small {
+  color: red;
+}
+
+/* si el input tiene error se le aplica esta clase sobreescribiendo algunos estilos del input */
+.error-input {
+  border: 1px solid red;
+  box-shadow: 0 0px 0px rgba(255, 1, 1, 0.8) inset,
+    0 0 3px rgba(236, 87, 82, 0.8);
+  outline: 0 none;
+}
+
+.google-login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.or-container {
+  align-items: center;
+  color: #ccc;
+  display: flex;
+  margin: 15px 0;
+}
+
+.line-separator {
+  background-color: #ccc;
+  flex-grow: 5;
+  height: 1px;
+}
+
+.or-label {
+  flex-grow: 1;
+  margin: 0 15px;
+  text-align: center;
+}
+
+@media screen and (max-width: 800px) {
+  img {
+    display: none;
+  }
+}
