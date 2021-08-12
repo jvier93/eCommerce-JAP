@@ -46,11 +46,20 @@ var getJSONData = function (url) {
     });
 };
 
-function isLogged() {}
+function isLogged() {
+  const logged = localStorage.getItem("logged");
+
+  return logged !== null && logged === "true";
+}
 
 function redirectTo() {}
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
-document.addEventListener("DOMContentLoaded", function (e) {});
+
+document.addEventListener("DOMContentLoaded", function (e) {
+  if (!isLogged() && location.pathname !== "/eCommerce-JAP/login.html") {
+    location.replace("login.html");
+  }
+});

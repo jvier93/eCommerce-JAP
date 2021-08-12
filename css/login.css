@@ -21,9 +21,14 @@ img {
   margin-bottom: 15px;
 }
 
+.group-form {
+  display: flex;
+  flex-direction: column;
+}
+
 input {
   width: 220px;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
 }
 
 input:focus {
@@ -35,6 +40,7 @@ input:focus {
 }
 
 small {
+  height: 20px;
   color: red;
 }
 
@@ -44,6 +50,10 @@ small {
   box-shadow: 0 0px 0px rgba(255, 1, 1, 0.8) inset,
     0 0 3px rgba(236, 87, 82, 0.8);
   outline: 0 none;
+}
+
+button {
+  margin-top: 20px;
 }
 
 .google-login-wrapper {

@@ -23,6 +23,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
       if (!this.checkValidity()) {
         validateInput("userEmail", "userEmailError", "email");
         validateInput("userPassword", "userPasswordError", "password");
+      } else {
+        setLogged();
       }
 
       e.preventDefault();
@@ -55,4 +57,9 @@ function validateInput(inputId, spanErrorId, inputType, onEvent = null) {
       ).textContent = `inserte un ${inputType} válido`;
     }
   }
+}
+
+function setLogged() {
+  localStorage.setItem("logged", true);
+  location.replace("index.html");
 }
