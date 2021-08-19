@@ -52,14 +52,16 @@ function isLogged() {
   return logged !== null && logged === "true";
 }
 
-function redirectTo() {}
+function redirectTo(url) {
+  location.replace(url);
+}
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 
 document.addEventListener("DOMContentLoaded", function (e) {
-  if (!isLogged() && location.pathname !== "/eCommerce-JAP/login.html") {
-    location.replace("login.html");
+  if (!isLogged() && !location.pathname.endsWith("login.html")) {
+    redirectTo("login.html");
   }
 });

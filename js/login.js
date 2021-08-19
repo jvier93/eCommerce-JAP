@@ -5,11 +5,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
   //Manejo del focus de los small que muestran los errores
   document.getElementById("userEmail").addEventListener("focus", (e) => {
     document.getElementById("userEmailError").textContent = "";
-    //document.getElementById("userEmail").classList.remove("error-input");
   });
   document.getElementById("userPassword").addEventListener("focus", (e) => {
     document.getElementById("userPasswordError").textContent = "";
-    //document.getElementById("userPassword").classList.remove("error-input");
   });
 
   //Validamos los inputs cuando se ejecuta el evento blur
@@ -25,6 +23,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
         validateInput("userPassword", "userPasswordError", "password");
       } else {
         setLogged();
+        redirectTo("index.html");
       }
 
       e.preventDefault();
@@ -61,5 +60,8 @@ function validateInput(inputId, spanErrorId, inputType, onEvent = null) {
 
 function setLogged() {
   localStorage.setItem("logged", true);
-  location.replace("index.html");
+}
+
+function onSignIn(googleUser) {
+  setLogged();
 }

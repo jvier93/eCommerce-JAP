@@ -1,0 +1,15 @@
+#product-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.card {
+  border: 1px solid #dfdfdf;
+  padding: 10px;
+}
+
+.card:hover {
+  background-color: #f8f9fa;
+}
