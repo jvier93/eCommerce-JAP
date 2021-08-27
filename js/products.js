@@ -1,7 +1,42 @@
+let ORDER_ASC_BY_PRICE = "ASC";
+let ORDER_DES_BY_PRICE = "DES";
+let ORDER_BY_PROD_REL = "Rel.";
+let currentSortCriteria = null;
 let currentProductsArray = [];
 let minPrice = null;
 let maxPrice = null;
 let searchedText = "";
+
+function sortProducts(criteria, array) {
+  let result = [];
+  if (criteria === ORDER_ASC_BY_PRICE) {
+    result = array.sort((a, b) => {
+      return a.cost - b.cost;
+    });
+  } else if (criteria === ORDER_DES_BY_PRICE) {
+    result = array.sort((a, b) => {
+      return b.cost - a.cost;
+    });
+  } else if (criteria === ORDER_BY_PROD_REL) {
+    result = array.sort((a, b) => {
+      return b.soldCount - a.soldCount;
+    });
+  }
+
+  return result;
+}
+
+function sortAndShowProducts(sortCriteria, productsArray) {
+  currentSortCriteria = sortCriteria;
+
+  productsArray !== undefined ? (currentProductsArray = productsArray) : null;
+  currentProductsArray = sortProducts(
+    currentSortCriteria,
+    currentProductsArray
+  );
+
+  showProductsList();
+}
 
 function createElement({
   type,
@@ -30,32 +65,44 @@ function showProductsList() {
   const productList = document.getElementById("product-list");
   productList.hasChildNodes() ? (productList.innerHTML = "") : null;
 
-  currentProductsArray.map(({ name, description, cost, currency }) => {
-    if (
-      name.toLowerCase().includes(searchedText.toLowerCase()) ||
-      description.toLowerCase().includes(searchedText.toLowerCase())
-    ) {
+  currentProductsArray.map(
+    ({ name, description, cost, currency, soldCount }) => {
       if (
-        ((minPrice === null ||
-          (minPrice !== null && parseInt(cost) >= minPrice)) &&
-          maxPrice === null) ||
-        (maxPrice !== null && parseInt(cost) <= maxPrice)
+        name.toLowerCase().includes(searchedText.toLowerCase()) ||
+        description.toLowerCase().includes(searchedText.toLowerCase())
       ) {
-        const card = createElement({
-          type: "div",
-          appendTo: productList,
-          className: "card",
-        });
-        createElement({ type: "h1", textContent: name, appendTo: card });
-        createElement({ type: "p", textContent: description, appendTo: card });
-        createElement({
-          type: "span",
-          textContent: `${currency} ${cost}`,
-          appendTo: card,
-        });
+        if (
+          ((minPrice === null ||
+            (minPrice !== null && parseInt(cost) >= minPrice)) &&
+            maxPrice === null) ||
+          (maxPrice !== null && parseInt(cost) <= maxPrice)
+        ) {
+          const card = createElement({
+            type: "div",
+            appendTo: productList,
+            className: "card",
+          });
+          createElement({ type: "h1", textContent: name, appendTo: card });
+          createElement({
+            type: "small",
+            textContent: `${soldCount} vendidos`,
+            appendTo: card,
+          });
+          createElement({ type: "br", appendTo: card });
+          createElement({
+            type: "p",
+            textContent: description,
+            appendTo: card,
+          });
+          createElement({
+            type: "span",
+            textContent: `${currency} ${cost}`,
+            appendTo: card,
+          });
+        }
       }
     }
-  });
+  );
 }
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
@@ -64,8 +111,7 @@ function showProductsList() {
 document.addEventListener("DOMContentLoaded", function (e) {
   getJSONData(PRODUCTS_URL).then((result) => {
     if (result.status === "ok") {
-      currentProductsArray = result.data;
-      showProductsList();
+      sortAndShowProducts(ORDER_DES_BY_PRICE, result.data);
     }
   });
 
@@ -97,5 +143,17 @@ document.addEventListener("DOMContentLoaded", function (e) {
       : (maxPrice = null);
 
     showProductsList();
+  });
+
+  document.getElementById("sortAsc").addEventListener("click", () => {
+    sortAndShowProducts(ORDER_ASC_BY_PRICE);
+  });
+
+  document.getElementById("sortDesc").addEventListener("click", () => {
+    sortAndShowProducts(ORDER_DES_BY_PRICE);
+  });
+
+  document.getElementById("sortByRelevance").addEventListener("click", () => {
+    sortAndShowProducts(ORDER_BY_PROD_REL);
   });
 });
