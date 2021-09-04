@@ -7,6 +7,34 @@ let minPrice = null;
 let maxPrice = null;
 let searchedText = "";
 
+function createElement({
+  type,
+  appendTo = null,
+  appendToId = "",
+  className = "",
+  textContent = "",
+  imageSrc = "",
+}) {
+  const element = document.createElement(type);
+  if (textContent !== "") {
+    element.textContent = textContent;
+  }
+  if (className !== "") {
+    element.classList.add(className);
+  }
+
+  if (imageSrc !== "") {
+    element.setAttribute("src", imageSrc);
+  }
+
+  if (appendTo !== null) {
+    appendTo.appendChild(element);
+  } else if (appendToId !== "") {
+    document.getElementById(appendToId).appendChild(element);
+  }
+  return element;
+}
+
 function sortProducts(criteria, array) {
   let result = [];
   if (criteria === ORDER_ASC_BY_PRICE) {
@@ -38,39 +66,18 @@ function sortAndShowProducts(sortCriteria, productsArray) {
   showProductsList();
 }
 
-function createElement({
-  type,
-  appendTo = null,
-  appendToId = "",
-  className = "",
-  textContent = "",
-}) {
-  const element = document.createElement(type);
-  if (textContent !== "") {
-    element.textContent = textContent;
-  }
-  if (className !== "") {
-    element.classList.add(className);
-  }
-
-  if (appendTo !== null) {
-    appendTo.appendChild(element);
-  } else if (appendToId !== "") {
-    document.getElementById(appendToId).appendChild(element);
-  }
-  return element;
-}
-
 function showProductsList() {
   const productList = document.getElementById("product-list");
   productList.hasChildNodes() ? (productList.innerHTML = "") : null;
-
+  console.log(currentProductsArray);
   currentProductsArray.map(
-    ({ name, description, cost, currency, soldCount }) => {
+    ({ name, description, cost, currency, soldCount, imgSrc }) => {
+      //Si cumple con el contenido del campo buscar
       if (
         name.toLowerCase().includes(searchedText.toLowerCase()) ||
         description.toLowerCase().includes(searchedText.toLowerCase())
       ) {
+        //Si cumple con el precio minimo y maximo establecido
         if (
           ((minPrice === null ||
             (minPrice !== null && parseInt(cost) >= minPrice)) &&
@@ -82,6 +89,10 @@ function showProductsList() {
             appendTo: productList,
             className: "card",
           });
+          console.log(
+            createElement({ type: "img", imageSrc: imgSrc, appendTo: card })
+          );
+
           createElement({ type: "h1", textContent: name, appendTo: card });
           createElement({
             type: "small",

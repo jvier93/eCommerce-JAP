@@ -48,8 +48,11 @@ var getJSONData = function (url) {
 
 function isLogged() {
   const logged = localStorage.getItem("logged");
-
   return logged !== null && logged === "true";
+}
+
+function setLogged(value) {
+  localStorage.setItem("logged", value);
 }
 
 function redirectTo(url) {
@@ -61,7 +64,18 @@ function redirectTo(url) {
 //elementos HTML presentes.
 
 document.addEventListener("DOMContentLoaded", function (e) {
+  //Si el usuario no esta logueado y no estamos ya posicionados en login html.
   if (!isLogged() && !location.pathname.endsWith("login.html")) {
     redirectTo("login.html");
+  } else {
+    //Recuperamos el nombre de usuario y lo seteamos en el dropdown de usuario
+    const username = localStorage.getItem("username");
+    document.getElementById("my-dropmenu").textContent = username;
+
+    //Evento de log out en el boton cerrar sesion del dropdown
+    document.getElementById("signOut").addEventListener("click", () => {
+      setLogged(false);
+      redirectTo("login.html");
+    });
   }
 });

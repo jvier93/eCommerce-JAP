@@ -22,7 +22,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
         validateInput("userEmail", "userEmailError", "email");
         validateInput("userPassword", "userPasswordError", "password");
       } else {
-        setLogged();
+        setLogged(true);
+
+        setUsername(document.getElementById("userEmail").value);
         redirectTo("index.html");
       }
 
@@ -58,10 +60,13 @@ function validateInput(inputId, spanErrorId, inputType, onEvent = null) {
   }
 }
 
-function setLogged() {
-  localStorage.setItem("logged", true);
+//Guarda el nombre de usuario introducido en el localstorage
+function setUsername(username) {
+  if (username !== "") {
+    localStorage.setItem("username", username);
+  }
 }
 
 function onSignIn(googleUser) {
-  setLogged();
+  setLogged(true);
 }

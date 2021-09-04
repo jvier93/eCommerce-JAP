@@ -18,7 +18,10 @@
       href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i"
       rel="stylesheet"
     />
+
+    <!-- Font Awesome -->
     <link href="css/font-awesome.min.css" rel="stylesheet" />
+
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
     <link href="css/products.css" rel="stylesheet" />
@@ -36,7 +39,16 @@
           >Productos</a
         >
         <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
-        <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
+        <div class="dropdown">
+          <div class="py-2 d-none d-md-inline-block">
+            <a id="my-dropmenu" href="#"> </a>
+            <i class="fas fa-caret-down icon-white"></i>
+          </div>
+          <div class="dropdown-content">
+            <a href="cart.html">Mi Carrito</a>
+            <a id="signOut" href="#">Cerrar Sesión</a>
+          </div>
+        </div>
       </div>
     </nav>
     <div class="text-center p-4">
