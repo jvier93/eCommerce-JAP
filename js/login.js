@@ -60,13 +60,13 @@ function validateInput(inputId, spanErrorId, inputType, onEvent = null) {
   }
 }
 
-//Guarda el nombre de usuario introducido en el localstorage
+//Guarda el nombre de usuario introducido en el sessionStorage
 function setUsername(username) {
   if (username !== "") {
-    localStorage.setItem("username", username);
+    sessionStorage.setItem("username", username);
   }
 }
 
-function onSignIn(googleUser) {
+function onSignIn() {
   setLogged(true);
 }

@@ -13,6 +13,60 @@ const PRODUCT_INFO_COMMENTS_URL =
 const CART_INFO_URL = "https://japdevdep.github.io/ecommerce-api/cart/987.json";
 const CART_BUY_URL = "https://japdevdep.github.io/ecommerce-api/cart/buy.json";
 
+function showImagesGallery(array, showInContainer) {
+  let htmlContentToAppend = "";
+
+  for (let i = 0; i < array.length; i++) {
+    let imageSrc = array[i];
+
+    htmlContentToAppend +=
+      `
+        <div class="col-lg-3 col-md-4 col-6">
+            <div class="d-block mb-4 h-100">
+                <img class="img-fluid img-thumbnail" src="` +
+      imageSrc +
+      `" alt="">
+            </div>
+        </div>
+        `;
+
+    document.getElementById(showInContainer).innerHTML = htmlContentToAppend;
+  }
+}
+
+function createElement({
+  type,
+  appendTo = null,
+  appendToId = "",
+  className = "",
+  textContent = "",
+  imageSrc = "",
+  redirectTo = "",
+}) {
+  const element = document.createElement(type);
+  if (textContent !== "") {
+    element.textContent = textContent;
+  }
+  if (className !== "") {
+    element.classList.add(className);
+  }
+
+  if (imageSrc !== "") {
+    element.setAttribute("src", imageSrc);
+  }
+
+  if (redirectTo !== "") {
+    element.setAttribute("href", redirectTo);
+  }
+
+  if (appendTo !== null) {
+    appendTo.appendChild(element);
+  } else if (appendToId !== "") {
+    document.getElementById(appendToId).appendChild(element);
+  }
+  return element;
+}
+
 var showSpinner = function () {
   document.getElementById("spinner-wrapper").style.display = "block";
 };
@@ -47,12 +101,12 @@ var getJSONData = function (url) {
 };
 
 function isLogged() {
-  const logged = localStorage.getItem("logged");
+  const logged = sessionStorage.getItem("logged");
   return logged !== null && logged === "true";
 }
 
 function setLogged(value) {
-  localStorage.setItem("logged", value);
+  sessionStorage.setItem("logged", value);
 }
 
 function redirectTo(url) {
@@ -69,7 +123,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
     redirectTo("login.html");
   } else {
     //Recuperamos el nombre de usuario y lo seteamos en el dropdown de usuario
-    const username = localStorage.getItem("username");
+    const username = sessionStorage.getItem("username");
     document.getElementById("my-dropmenu").textContent = username;
 
     //Evento de log out en el boton cerrar sesion del dropdown

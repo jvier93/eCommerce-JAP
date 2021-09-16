@@ -9,7 +9,7 @@
     />
     <meta name="description" content="" />
     <title>eMercado - Todo lo que busques está aquí</title>
-
+    <link rel="stylesheet" href="./css/product-info.css" />
     <link
       rel="canonical"
       href="https://getbootstrap.com/docs/4.3/examples/album/"
@@ -49,24 +49,95 @@
         </div>
       </div>
     </nav>
-    <div class="container p-5">
-      <div
-        class="alert alert-danger"
-        role="alert"
-        style="position: relative; width: auto; top: 0"
-      >
-        <h4 class="alert-heading">¡A trabajar! :)</h4>
-        <p>
-          Esta sección corresponde a: Entrega 3 (Fecha de entrega: 19/09/2021) y
-          Entrega 4 (Fecha de entrega: 03/10/2021).
-        </p>
-        <hr />
-        <p class="mb-0">
-          Para saber qué debes hacer, fijate en la actividad en CREA
-          correspondiente a esta entrega.
-        </p>
+    <main role="main">
+      <div class="container mt-5">
+        <div class="text-center p-4">
+          <h2>Descripción de Producto</h2>
+          <p class="lead">
+            Encontrarás aquí toda la información del producto seleccionado.
+          </p>
+          <p class="small alert-warning py-3">
+            <strong>Nota: </strong>por simplicidad, cualquier sea el producto
+            seleccionado previamente, siempre se visualizará el presente
+            detalle.
+          </p>
+        </div>
+        <h3 id="productName"></h3>
+        <hr class="my-3" />
+        <dl>
+          <dt>Descripción</dt>
+          <dd>
+            <p id="productDescription"></p>
+          </dd>
+
+          <dt>Costo</dt>
+          <dd>
+            <p id="productCurrencyAndCost"></p>
+          </dd>
+
+          <dt>Cantidad de vendidos</dt>
+          <dd>
+            <p id="productSoldCount"></p>
+          </dd>
+
+          <dt>Categoria</dt>
+          <dd>
+            <p id="productCategory"></p>
+          </dd>
+
+          <dt>Imágenes ilustrativas</dt>
+          <dd>
+            <div
+              class="row text-center text-lg-left pt-2"
+              id="productImagesGallery"
+            ></div>
+          </dd>
+        </dl>
+        <dt>Otros productos relacionados</dt>
+        <dd>
+          <div class="related-products" id="relatedProducts"></div>
+        </dd>
+        <a
+          type="button"
+          class="btn btn-light btn-lg btn-block"
+          href="products.html"
+          >Ver productos</a
+        >
+        <h5>Comentarios</h5>
+        <hr class="my-3" />
+        <div class="comments" id="comments"></div>
+        <div>
+          <form id="form-comments" class="form-comments" action="">
+            <div class="wrapper-start-rating">
+              <label for="">Califica este producto:</label>
+
+              <div class="puntuacion">
+                <input id="radio1" type="radio" name="estrellas" value="5" />
+                <label for="radio1">★</label>
+                <input id="radio2" type="radio" name="estrellas" value="4" />
+                <label for="radio2">★</label>
+                <input id="radio3" type="radio" name="estrellas" value="3" />
+                <label for="radio3">★</label>
+                <input id="radio4" type="radio" name="estrellas" value="2" />
+                <label for="radio4">★</label>
+                <input id="radio5" type="radio" name="estrellas" value="1" />
+                <label for="radio5">★</label><br />
+              </div>
+            </div>
+
+            <textarea
+              class="form-control"
+              id="form-comment-description"
+              placeholder="Haz un comentario de este producto"
+            ></textarea>
+            <div class="form-comment-controls">
+              <button class="btn btn-primary" type="submit">Publicar</button>
+              <small id="smallInvalidCommentForm"></small>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
+    </main>
     <footer class="text-muted">
       <div class="container">
         <p class="float-right">

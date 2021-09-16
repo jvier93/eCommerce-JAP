@@ -1,0 +1,128 @@
+/* Seccion productos relacionados */
+
+.related-products {
+  margin: 20px 20px;
+
+  display: flex;
+  gap: 20px;
+}
+
+.related-product {
+  border: 1px solid #dfdfdf;
+  border-radius: 5px;
+  padding: 10px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.related-product:hover {
+  background-color: #f8f9fa;
+}
+
+.related-product-img {
+  width: 100px;
+}
+
+/* Seccion de comentarios */
+
+.comments {
+  padding: 20px 0px;
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+}
+
+.comment {
+  min-width: 350px;
+  max-width: 800px;
+}
+
+.comment p {
+  margin-bottom: 0;
+}
+
+.comment-header {
+  display: flex;
+  justify-content: start;
+}
+
+.comment-user {
+  flex-grow: 0.1;
+}
+
+.comment-date {
+  flex-grow: 1;
+}
+
+/* Sistema de votacion con estrellas extraido de background entrega 4 y modificado */
+.wrapper-start-rating {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.puntuacion {
+  height: 40px;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: start;
+  align-items: center;
+}
+
+.puntuacion input {
+  display: none;
+}
+
+.puntuacion label {
+  color: #c1b8b8;
+  font-size: 30px;
+}
+
+.puntuacion label:hover,
+.puntuacion label:hover ~ label,
+.puntuacion input:checked ~ label {
+  color: orange;
+}
+span {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-weight: 400;
+  color: #c1b8b8;
+}
+
+/* formulario de comentarios */
+
+.form-comment-controls {
+  display: flex;
+  align-items: center;
+}
+
+.form-comment-controls button {
+  margin-right: 50px;
+}
+
+.form-comment-controls small {
+  height: 20px;
+  color: red;
+}
+
+.form-comments {
+  padding: 20px;
+  border: 1px solid #dfdfdf;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-comments button {
+  width: 100px;
+}
+
+.error-textarea {
+  border: 1px solid red;
+  box-shadow: 0 0px 0px rgba(255, 1, 1, 0.8) inset,
+    0 0 3px rgba(236, 87, 82, 0.8);
+  outline: 0 none;
+}

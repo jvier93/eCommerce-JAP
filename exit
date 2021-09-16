@@ -1,0 +1,41 @@
+[33mcommit f7479f45faa54f10299bef1408f79ce7a37dc99e[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Pablo Kraiñuk <pablo-krai@hotmail.com>
+Date:   Sat Sep 4 13:56:21 2021 -0300
+
+    Navbar modificado, se agregó dropdown con nombre de usuario, enlace a su carrito y función de cerrar sesión
+
+[33mcommit 82d340a7e704ce2b35f84fa45f251b32394bd1a3[m
+Author: Pablo Kraiñuk <pablo-krai@hotmail.com>
+Date:   Fri Aug 27 11:32:07 2021 -0300
+
+    Se añadioSe añadió funciones de ordenamiento por precio descendente y ascendente así como también por relevancia (cantidad de vendidos de ese producto), se implementó función sortAndShowProducts
+
+[33mcommit 9939cbef5375acc0d1ea05d5214e9520a40d665c[m
+Author: Pablo Kraiñuk <pablo-krai@hotmail.com>
+Date:   Wed Aug 25 12:22:07 2021 -0300
+
+    Se agregaron filtros (búsqueda de texto por nombre o descripción, precio mínimo y máximo)
+
+[33mcommit 3457184094f765a4712680e680eba44da6c7abb2[m
+Author: Pablo Kraiñuk <pablo-krai@hotmail.com>
+Date:   Thu Aug 19 14:32:07 2021 -0300
+
+    Fetch y render de productos en products, finalizamos login
+
+[33mcommit 02b5a08f75a03b027d4537ae046c4d7d3a1dfdc2[m
+Author: Pablo Kraiñuk <pablo-krai@hotmail.com>
+Date:   Wed Aug 11 21:09:41 2021 -0300
+
+    algunos estilos en el formulario de login, seteo y lectura de logged en localStorage, redirección segun su valor
+
+[33mcommit e41a7ac419af622702337f5279b15c445dec9609[m
+Author: Pablo Kraiñuk <pablo-krai@hotmail.com>
+Date:   Wed Aug 11 20:06:11 2021 -0300
+
+    form de login con sus respectivas validaciones
+
+[33mcommit 94dbbeb2905c168b6ca0ddb59d3633faae5aebfd[m
+Author: Pablo Kraiñuk <pablo-krai@hotmail.com>
+Date:   Thu Aug 5 13:33:01 2021 -0300
+
+    first commit
