@@ -154,18 +154,17 @@ document.addEventListener("DOMContentLoaded", function (e) {
     .getElementById("form-comments")
     .addEventListener("submit", (event) => {
       event.preventDefault();
+      const scoreInput = document.querySelector(
+        'input[name="estrellas"]:checked'
+      );
+      const descriptionInput = document.getElementById(
+        "form-comment-description"
+      );
 
-      if (
-        document.querySelector('input[name="estrellas"]:checked') !== null &&
-        document.getElementById("form-comment-description").value !== ""
-      ) {
+      if (scoreInput !== null && descriptionInput.value !== "") {
         document.getElementById("smallInvalidCommentForm").textContent = "";
-        const description = document.getElementById(
-          "form-comment-description"
-        ).value;
-        const score = Number(
-          document.querySelector('input[name="estrellas"]:checked').value
-        );
+        const description = descriptionInput.value;
+        const score = Number(scoreInput.value);
 
         commentsArray.push({
           user: sessionStorage.getItem("username"),
@@ -173,6 +172,11 @@ document.addEventListener("DOMContentLoaded", function (e) {
           description,
           score,
         });
+
+        //Reseteamos el formulario
+        scoreInput.checked = false;
+        descriptionInput.value = "";
+
         showComments();
       } else {
         document.getElementById("smallInvalidCommentForm").textContent =
