@@ -126,3 +126,50 @@ span {
     0 0 3px rgba(236, 87, 82, 0.8);
   outline: 0 none;
 }
+
+/* * Css del carousell */
+.carrousel {
+  padding: 20px 0px;
+  margin: auto;
+  position: relative;
+  width: 50%;
+  overflow: hidden;
+}
+
+.imagesWrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.5s ease;
+  transform: tranlateX(0%);
+}
+
+/* Botones de adelante y atras */
+.back,
+.forward {
+  cursor: pointer;
+  position: absolute;
+  z-index: 1;
+  top: 48%;
+  width: auto;
+  margin-top: -23px;
+  padding: 17px;
+  color: grey;
+  font-weight: bold;
+  font-size: 40px;
+  transition: 0.4s ease;
+  border-radius: 0 5px 5px 0;
+  user-select: none;
+}
+
+/* Movemos el boton de adelante a la derecha */
+.forward {
+  right: 0;
+  border-radius: 4px 0 0 4px;
+}
+
+.back:hover,
+.forward:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
