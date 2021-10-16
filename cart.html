@@ -40,6 +40,7 @@
     <link href="css/font-awesome.min.css" rel="stylesheet" />
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./css/cart.css" />
     <link href="css/dropzone.css" rel="stylesheet" />
   </head>
 
@@ -69,24 +70,121 @@
         </div>
       </div>
     </nav>
-    <div class="container p-5">
-      <div
-        class="alert alert-danger"
-        role="alert"
-        style="position: relative; width: auto; top: 0"
-      >
-        <h4 class="alert-heading">¡A trabajar! :)</h4>
-        <p>
-          Esta sección corresponde a: Entrega 5 (Fecha de entrega: 17/10/2021) y
-          Entrega 7 (Fecha de entrega: 14/11/2021).
-        </p>
+
+    <div class="container p-5 cart-wrapper">
+      <div class="cart-products-wrapper">
+        <h4>Productos</h4>
+        <div class="cart-products" id="cart-products"></div>
+      </div>
+      <div>
         <hr />
-        <p class="mb-0">
-          Para saber qué debes hacer, fijate en la actividad en CREA
-          correspondiente a esta entrega.
-        </p>
+        <h4>Formas de pago</h4>
+        <div class="payment">
+          <input
+            value="card"
+            class="radio-input"
+            id="credit-card"
+            name="payment"
+            type="radio"
+            hidden
+            checked
+          />
+          <label class="radio-label" for="credit-card">
+            <i class="fas fa-credit-card"></i>
+            Tarjeta de crédito
+          </label>
+
+          <input
+            value="bank"
+            class="radio-input"
+            id="wire-transfer"
+            name="payment"
+            type="radio"
+            hidden
+          />
+          <label class="radio-label" for="wire-transfer">
+            <i class="fas fa-money-check-alt"></i>
+            Transferencia bancaria
+          </label>
+        </div>
+        <div id="payment-form-container" class="payment-form-container">
+          <div class="card-number-and-code">
+            <div class="input-control">
+              <label for="card-number">Número de tarjeta</label>
+              <input id="card-number" type="number" />
+            </div>
+            <div class="input-control">
+              <label for="card-code">Código de seg.</label>
+              <input id="card-code" type="number" />
+            </div>
+          </div>
+          <div class="input-control">
+            <label for="expired-date">Vencimiento (MM/AA)</label>
+            <input id="expired-date" type="text" />
+          </div>
+        </div>
+      </div>
+      <div>
+        <hr class="my-3" />
+        <h4>Método de envio</h4>
+        <div class="cart-shipping-container">
+          <select name="" id="cart-shipping">
+            <option value="5" selected>Standar (12 a 15 días)</option>
+            <option value="7">Express (5-8 días)</option>
+            <option value="15">Premium (2-5 días</option>
+          </select>
+        </div>
+
+        <div class="shipping-address-container">
+          <div class="street-and-street-number">
+            <div class="input-control">
+              <label for="street">Calle</label>
+              <input id="street" type="text" />
+            </div>
+            <div class="input-control">
+              <label for="street-number">Numero</label>
+              <input id="street-number" type="number" />
+            </div>
+          </div>
+          <div class="input-control">
+            <label for="street-corner">Esquina</label>
+            <input id="street-corner" type="text" />
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <hr class="my-3" />
+        <h4>Resumen</h4>
+        <div class="currency">
+          <p>Moneda</p>
+          <select name="" id="currency">
+            <option value="USD" selected>USD</option>
+            <option value="UYU">UYU</option>
+          </select>
+        </div>
+
+        <div class="subtotal">
+          <p>Subtotal</p>
+          <p id="subtotal"></p>
+        </div>
+        <div class="shipping-tax">
+          <p>Recargo de envio</p>
+          <p id="shipping-tax"></p>
+        </div>
+        <strong>
+          <div class="total">
+            <p>Total</p>
+            <p id="total"></p>
+          </div>
+        </strong>
+      </div>
+
+      <div class="control-buttons">
+        <button class="btn btn-primary">Finalizar compra</button>
       </div>
     </div>
+
     <div id="spinner-wrapper">
       <div class="lds-ring">
         <div></div>

@@ -1,0 +1,217 @@
+/*Algunos estilos generales usados en varias partes de este archivo */
+.input-control {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-control input {
+  max-width: 350px;
+}
+
+.cart-wrapper {
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-height: 100vh;
+}
+
+/* Inicio css de los articulos en el carrito */
+
+.cart-products {
+  padding-top: 10px;
+}
+
+.article {
+  max-width: 500px;
+  height: 100px;
+  display: flex;
+  gap: 30px;
+  box-shadow: 0px 2px 2px #dfdfdf;
+  border-radius: 4px;
+  padding: 10px 20px;
+}
+
+.article p {
+  margin: 0px;
+}
+
+.article-img-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.article-img-container img {
+  width: 70px;
+}
+
+.article-body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.article-data {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.article-price {
+  font-weight: bold;
+}
+
+.article-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.article-controls p {
+  align-self: flex-end;
+}
+
+.article-count input {
+  width: 35px;
+  text-align: center;
+  border: none;
+  outline: none;
+  padding: 8px;
+  font-weight: bold;
+  background-color: unset;
+}
+
+/*Eliminamos la apariencia por defecto del input en este caso tipo number, quitamos las "flechitas" para incrementar y decrementar */
+.article-count input::-webkit-inner-spin-button,
+.article-count input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/*Tambien lo hacemos para el navegador mozilla */
+.article-count input {
+  -moz-appearance: textfield;
+}
+
+.article-count button {
+  font-size: 15px;
+  font-weight: bold;
+  background-color: #dfdfdf;
+  border: none;
+  outline: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.article-count button:hover {
+  transform: scale(1.1, 1.1);
+}
+
+.article-count button:active {
+  transform: unset;
+}
+
+.article-trash {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: 0.2s;
+  background-color: unset;
+}
+
+.article-trash:hover {
+  transform: scale(1.1, 1.1);
+}
+
+.article-trash:active {
+  transform: unset;
+}
+
+/*Seccion metodo de envio */
+
+.cart-shipping-container {
+  padding-top: 20px;
+  padding-bottom: 5px;
+}
+
+.shipping-address-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  padding-left: 0px;
+}
+
+.street-and-street-number {
+  display: flex;
+  gap: 20px;
+}
+
+/*Seccion correspondiente a la forma de pago */
+
+.payment {
+  padding-top: 30px;
+  display: flex;
+}
+
+.radio-label {
+  width: 250px;
+  padding: 10px;
+  border-radius: 5px;
+  user-select: none;
+}
+
+.radio-input:checked + .radio-label {
+  background-color: #f1f1f1;
+}
+
+i {
+  margin-right: 5px;
+}
+
+.payment-form-container {
+  display: flex;
+  /*Altura especifica que es el minimo necesario para el "formulario" con mas contenido  */
+  height: 174px;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px;
+  padding-left: 0px;
+  padding-bottom: 0px;
+}
+
+.card-number-and-code {
+  display: flex;
+  gap: 20px;
+}
+
+/*Seccion de Resumen, total, subtotal, y recargo de envio   */
+.subtotal,
+.shipping-tax,
+.total {
+  display: flex;
+  justify-content: space-between;
+}
+
+.currency {
+  display: flex;
+  justify-content: flex-end;
+  padding: 5px;
+  padding-right: 0px;
+  gap: 5px;
+}
+
+.currency p {
+  margin: 0;
+  padding: 0;
+}
+
+/*Seccion correspondiente a los "botones de control" finalizar compra y demas */
+.control-buttons {
+  display: flex;
+  justify-content: flex-start;
+}
