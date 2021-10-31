@@ -116,10 +116,19 @@
 
 .article-trash {
   border: none;
-  outline: none;
   cursor: pointer;
   transition: 0.2s;
   background-color: unset;
+}
+
+.aricle-trash i {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.article-trash:focus {
+  outline: none;
 }
 
 .article-trash:hover {
@@ -153,19 +162,28 @@
 /*Seccion correspondiente a la forma de pago */
 
 .payment {
-  padding-top: 30px;
+  max-width: 500px;
+  margin-top: 30px;
   display: flex;
+  justify-content: center;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  border-radius: 5px;
 }
 
 .radio-label {
+  display: flex;
+
   width: 250px;
   padding: 10px;
-  border-radius: 5px;
+  margin: 0px;
   user-select: none;
+  background-color: #f8f9fa;
+  transition: background-color 0.1s;
 }
 
 .radio-input:checked + .radio-label {
-  background-color: #f1f1f1;
+  background-color: #dae0e5;
 }
 
 i {

@@ -41,7 +41,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
     <link href="css/dropzone.css" rel="stylesheet" />
-    <link rel="stylesheet" href="./css/my-profile.css" />
+    <link rel="stylesheet" href="./css/my-profile-form.css" />
   </head>
 
   <body>
@@ -72,36 +72,47 @@
     <div class="container p-5 wrapper">
       <h4>Mi perfil</h4>
       <p>Informacion del usuario.</p>
+      <form action="" id="user-data-form">
       <div class="user-data-container">
+          
         <div class="user-data">
-          <p>Foto de perfil:</p>
-          <img id="profile-picture" src="" alt="" />
+          <label for="username">Nombre:</label>
+          <input name="username" class="form-control" type="text" id="username"></input>
         </div>
         <div class="user-data">
-          <p>Nombre:</p>
-          <b><p id="username"></p></b>
+          <label for="birthday">Fecha de nacimiento:</label>
+          <input name="birthday" class="form-control"type="date" id="birthday"></input>
         </div>
         <div class="user-data">
-          <p>Fecha de nacimiento:</p>
-          <b><p id="birthday"></p></b>
+          <label for="email">Correo:</label>
+          <input name="email" class="form-control"type="email" id="email"></input>
         </div>
         <div class="user-data">
-          <p>Correo:</p>
-          <b><p id="email"></p></b>
+          <label for="address">Dirección:</label>
+          <input name="address" class="form-control"type="text" id="address"></input>
         </div>
         <div class="user-data">
-          <p>Dirección:</p>
-          <b><p id="address"></p></b>
+          <label for="phone">Teléfono:</label>
+          <input name="phone" class="form-control"type="number" id="phone"></input>
         </div>
-        <div class="user-data">
-          <p>Teléfono:</p>
-          <b><p id="phone"></p></b>
+        <div class="container-photo">
+          <label for="photo">Foto de perfil:</label>
+          <div>
+            <img id="photoPreview" src="" alt="">
+          </div>
+          
+         
+            
+            <input name="photo" class="form-control" type="file" id="photo"></input>
+         
         </div>
+        
+    
       </div>
-      <a class="btn btn-primary" href="./my-profile-form.html"
-        >Modificar Información</a
-      >
+      <button class="btn btn-primary" type="submit" href="">Guardar Información</button>
+    </form>
     </div>
+
     <footer class="text-muted bg-light">
       <div class="container">
         <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
@@ -130,10 +141,11 @@
         <div></div>
       </div>
     </div>
+    
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/dropzone.js"></script>
     <script src="js/init.js"></script>
-    <script src="js/my-profile.js"></script>
+    <script src="js/my-profile-form.js"></script>
   </body>
 </html>

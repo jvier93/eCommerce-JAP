@@ -23,8 +23,10 @@ document.addEventListener("DOMContentLoaded", function (e) {
         validateInput("userPassword", "userPasswordError", "password");
       } else {
         setLogged(true);
+        console.log("redirigimos a index");
 
-        setUsername(document.getElementById("userEmail").value);
+        setUserData({ email: document.getElementById("userEmail").value });
+
         redirectTo("index.html");
       }
 
@@ -57,13 +59,6 @@ function validateInput(inputId, spanErrorId, inputType, onEvent = null) {
         spanErrorId
       ).textContent = `inserte un ${inputType} válido`;
     }
-  }
-}
-
-//Guarda el nombre de usuario introducido en el sessionStorage
-function setUsername(username) {
-  if (username !== "") {
-    sessionStorage.setItem("username", username);
   }
 }
 

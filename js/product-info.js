@@ -229,7 +229,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
         const score = Number(scoreInput.value);
 
         commentsArray.push({
-          user: sessionStorage.getItem("username"),
+          user: localStorage.getItem("username"),
           dateTime: getDate(),
           description,
           score,

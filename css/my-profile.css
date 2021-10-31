@@ -1,0 +1,23 @@
+.wrapper {
+  max-width: 600px;
+}
+
+.user-data-container {
+  padding: 10px;
+  padding-bottom: 20px;
+}
+
+.user-data {
+  display: flex;
+  gap: 5px;
+}
+
+.user-data p {
+  margin-bottom: 0px;
+}
+
+.user-data img {
+  max-width: 200px;
+  height: 115px;
+  overflow: hidden;
+}

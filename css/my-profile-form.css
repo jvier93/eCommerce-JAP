@@ -1,0 +1,49 @@
+.wrapper {
+  max-width: 600px;
+}
+
+.user-data-container {
+  padding: 10px;
+  padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.user-data {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  padding: 0px;
+}
+
+.user-data input {
+  max-width: 200px;
+}
+
+.container-photo {
+  height: 215px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 5px;
+  border: 1px solid #dfdfdf;
+  border-radius: 5px;
+}
+
+.container-photo div {
+  width: 400px;
+  display: flex;
+  justify-content: center;
+}
+
+.container-photo label {
+  margin: 0px;
+}
+
+.container-photo img {
+  max-width: 200px;
+  height: 115px;
+  overflow: hidden;
+}

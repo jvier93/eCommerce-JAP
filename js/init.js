@@ -101,16 +101,52 @@ var getJSONData = function (url) {
 };
 
 function isLogged() {
-  const logged = sessionStorage.getItem("logged");
+  const logged = localStorage.getItem("logged");
   return logged !== null && logged === "true";
 }
 
 function setLogged(value) {
-  sessionStorage.setItem("logged", value);
+  localStorage.setItem("logged", value);
 }
 
 function redirectTo(url) {
   location.replace(url);
+}
+
+function getUserData() {
+  if (JSON.parse(localStorage.getItem("userdata")) === null) {
+    return {
+      address: "",
+      birthday: "",
+      email: "",
+      phone: "",
+      profilePicture: "",
+      username: "",
+    };
+  } else {
+    return JSON.parse(localStorage.getItem("userdata"));
+  }
+}
+
+//Guarda la informacion del usuario pasada en parametro como un objeto
+function setUserData({
+  address = null,
+  birthday = null,
+  email = null,
+  phone = null,
+  profilePicture = null,
+  username = null,
+}) {
+  const userData = getUserData();
+
+  address === null ? null : (userData.address = address);
+  birthday === null ? null : (userData.birthday = birthday);
+  email === null ? null : (userData.email = email);
+  phone === null ? null : (userData.phone = phone);
+  profilePicture === null ? null : (userData.profilePicture = profilePicture);
+  username === null ? null : (userData.username = username);
+
+  localStorage.setItem("userdata", JSON.stringify(userData));
 }
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
@@ -122,14 +158,17 @@ document.addEventListener("DOMContentLoaded", function (e) {
   if (!isLogged() && !location.pathname.endsWith("login.html")) {
     redirectTo("login.html");
   } else {
-    //Recuperamos el nombre de usuario y lo seteamos en el dropdown de usuario
-    const username = sessionStorage.getItem("username");
-    document.getElementById("my-dropmenu").textContent = username;
+    //Si no estamos posicionados en login podremos hacer las siguientes cosas en el navbar.
+    if (!location.pathname.endsWith("login.html")) {
+      //Recuperamos el email del usuario y lo seteamos en el dropdown de usuario
+      const userData = getUserData();
+      document.getElementById("my-dropmenu").textContent = userData.email;
 
-    //Evento de log out en el boton cerrar sesion del dropdown
-    document.getElementById("signOut").addEventListener("click", () => {
-      setLogged(false);
-      redirectTo("login.html");
-    });
+      //Evento de log out en el boton cerrar sesion del dropdown
+      document.getElementById("signOut").addEventListener("click", () => {
+        setLogged(false);
+        redirectTo("login.html");
+      });
+    }
   }
 });

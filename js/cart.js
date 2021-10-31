@@ -25,7 +25,8 @@ const increment = (event) => {
   getAndShowSummary(currentArrayCartProducts, shippingTax, currency);
 };
 
-const deleteProduct = (event, indexElementToDelete) => {
+const deleteProduct = (event) => {
+  const indexElementToDelete = event.currentTarget.dataset.id;
   currentArrayCartProducts.splice(indexElementToDelete, 1);
   showCartProducts();
   getAndShowSummary(currentArrayCartProducts, shippingTax, currency);
@@ -62,8 +63,8 @@ const showCartProducts = (arrayCartProducts = null) => {
           <button data-id=${index} onclick="increment(event)">+</button>
         </div>
 
-        <button onclick="deleteProduct(event,${index})" data-id=${index}  class="article-trash">
-          <i class="fas fa-trash"></i>
+        <button data-id=${index} onclick="deleteProduct(event)"   class="article-trash">
+        <i class="fas fa-trash"></i>
         </button>
         <p class="article-price">Subtotal ${currency} ${subtotalPerArticle}</p>
 
