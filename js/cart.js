@@ -59,7 +59,7 @@ const showCartProducts = (arrayCartProducts = null) => {
       <div class="article-controls">
         <div class="article-count">
           <button data-id=${index} onclick="decrement(event)">-</button>
-          <input type="number" value="${count}" />
+          <input disabled type="number"  value="${count}" />
           <button data-id=${index} onclick="increment(event)">+</button>
         </div>
 
@@ -95,14 +95,41 @@ const getSummary = (products, shippingTax, currencyAtSumary) => {
     }
   });
 
-  let percentToAdd = (shippingTax / 100) * subtotal;
-  total = (subtotal + percentToAdd).toFixed(2);
+  let shippingAmountToAdd = (shippingTax / 100) * subtotal;
 
-  return { subtotal, total };
+  total = (subtotal + shippingAmountToAdd).toFixed(2);
+
+  return { subtotal, total, shippingAmountToAdd };
+};
+
+//Funcion que evalua si los campos correspondientes al pago (dependiendo del tipo de pago) fueron completados
+const verificationDataPayment = (dataPaymentType = null, formData = null) => {
+  if (dataPaymentType !== null && formData !== null) {
+    if (dataPaymentType === "card") {
+      const cardNumber = formData.get("card-number");
+      const cardCode = formData.get("card-code");
+      const expiredDate = formData.get("expired-date");
+
+      return cardNumber !== "" && cardCode !== "" && expiredDate !== "";
+    } else if (dataPaymentType === "bank") {
+      const bankAccount = formData.get("bank-account");
+      return bankAccount !== "";
+    }
+  }
+};
+
+//Funcion que evalua si los campos correspondientes a datos de envio (direccion, calle y esquina) fueron completados.
+const verificationDataShipping = (formData = null) => {
+  if (formData !== null) {
+    const street = formData.get("street");
+    const streetNumber = formData.get("street-number");
+    const streetCorner = formData.get("street-corner");
+    return street !== "" && streetNumber !== "" && streetCorner !== "";
+  }
 };
 
 const getAndShowSummary = (products, shippingTax, currencyAtSumary) => {
-  const { subtotal, total } = getSummary(
+  const { subtotal, total, shippingAmountToAdd } = getSummary(
     products,
     shippingTax,
     currencyAtSumary
@@ -113,7 +140,7 @@ const getAndShowSummary = (products, shippingTax, currencyAtSumary) => {
 
   containerSubtotal.textContent = subtotal;
   //en este caso el taxes que pasamos como parametro sera el shippingTax, el impuesto por el envio.
-  recargoEnvio.textContent = `${shippingTax}%`;
+  recargoEnvio.textContent = `${shippingAmountToAdd}`;
   containerTotal.textContent = `${currencyAtSumary} ${total}`;
 };
 
@@ -121,31 +148,34 @@ const handleRadioInputsPayment = () => {
   const card = `<div class="card-number-and-code">
   <div class="input-control">
     <label for="card-number">Número de tarjeta</label>
-    <input id="card-number" type="number" />
+    <input form="cart-form" name="card-number" id="card-number" type="number" />
   </div>
   <div class="input-control">
     <label for="card-code">Código de seg.</label>
-    <input id="card-code" type="number" />
+    <input  form="cart-form" name="card-code" id="card-code" type="number" />
   </div>
 </div>
 <div class="input-control">
   <label for="expired-date">Vencimiento (MM/AA)</label>
-  <input id="expired-date" type="text" />
+  <input form="cart-form" name="expired-date" id="expired-date" type="text" />
 </div>`;
   const bank = `<div class="input-control">
   <label for="bank-account">Número de cuenta</label>
-  <input id="bank-account" type="number" />
+  <input form="cart-form" name="bank-account" id="bank-account" type="number" />
 </div>`;
 
   const paymentContainer = document.getElementById("payment-form-container");
-
+  //Elemento p en la pagina que nos mostrara el metodo de pago seleccionado
+  const paymentText = document.getElementById("payment-method-text");
   document.querySelectorAll('input[name="payment"]').forEach((element) => {
     element.addEventListener("click", (e) => {
       const inputValue = e.target.value;
       if (inputValue === "card") {
         paymentContainer.innerHTML = card;
+        paymentText.textContent = "Tarjeta de credito";
       } else {
         paymentContainer.innerHTML = bank;
+        paymentText.textContent = "Transferencia bancaria";
       }
     });
   });
@@ -170,6 +200,42 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
   document.getElementById("cart-shipping").addEventListener("change", (e) => {
     shippingTax = e.target.value;
+
     getAndShowSummary(currentArrayCartProducts, shippingTax, currency);
+  });
+
+  document
+    .getElementById("modal-close-button")
+    .addEventListener("click", (e) => {
+      let modalContainer = document.getElementById("payment-method-modal");
+      modalContainer.classList.remove("modal-visible");
+      modalContainer.classList.add("modal-hidden");
+    });
+
+  document
+    .getElementById("payment-method-button")
+    .addEventListener("click", (e) => {
+      let modalContainer = document.getElementById("payment-method-modal");
+      modalContainer.classList.remove("modal-hidden");
+      modalContainer.classList.add("modal-visible");
+    });
+
+  document.getElementById("cart-form").addEventListener("submit", (event) => {
+    //event.preventDefault();
+    let formData = new FormData(event.target);
+
+    const payment = formData.get("payment");
+
+    if (
+      currentArrayCartProducts.length > 0 &&
+      verificationDataPayment(payment, formData) &&
+      verificationDataShipping(formData)
+    ) {
+      return true;
+    } else {
+      document.getElementById("error-message-text").textContent =
+        "Por favor verifique que completo los datos correctamente";
+      event.preventDefault();
+    }
   });
 });

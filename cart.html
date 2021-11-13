@@ -76,83 +76,115 @@
         <h4>Productos</h4>
         <div class="cart-products" id="cart-products"></div>
       </div>
-      <div>
-        <hr />
-        <h4>Formas de pago</h4>
-        <div class="payment">
-          <input
-            value="card"
-            class="radio-input"
-            id="credit-card"
-            name="payment"
-            type="radio"
-            hidden
-            checked
-          />
+      <form id="cart-form" action="">
+        <div>
+          <hr />
+          <h4>Formas de pago</h4>
+          <p id="payment-method-text">Tarjeta de credito</p>
+          <a id="payment-method-button" href="#">Cambiar</a>
+          <div class="modal-container modal-hidden" id="payment-method-modal">
+            <div class="modal-form">
+              <button
+                type="button"
+                class="close-button"
+                id="modal-close-button"
+              >
+                <i class="fas fa-times"></i>
+              </button>
+              <div class="payment">
+                <input
+                  form="cart-form"
+                  value="card"
+                  class="radio-input"
+                  id="credit-card"
+                  name="payment"
+                  type="radio"
+                  hidden
+                  checked
+                />
 
-          <label class="radio-label" for="credit-card">
-            <i class="fas fa-credit-card"></i>
-            Tarjeta de crédito
-          </label>
+                <label class="radio-label" for="credit-card">
+                  <i class="fas fa-credit-card"></i>
+                  Tarjeta de crédito
+                </label>
 
-          <input
-            value="bank"
-            class="radio-input"
-            id="wire-transfer"
-            name="payment"
-            type="radio"
-            hidden
-          />
-          <label class="radio-label" for="wire-transfer">
-            <i class="fas fa-money-check-alt"></i>
-            Transferencia bancaria
-          </label>
-        </div>
-        <div id="payment-form-container" class="payment-form-container">
-          <div class="card-number-and-code">
-            <div class="input-control">
-              <label for="card-number">Número de tarjeta</label>
-              <input id="card-number" type="number" />
-            </div>
-            <div class="input-control">
-              <label for="card-code">Código de seg.</label>
-              <input id="card-code" type="number" />
+                <input
+                  form="cart-form"
+                  value="bank"
+                  class="radio-input"
+                  id="wire-transfer"
+                  name="payment"
+                  type="radio"
+                  hidden
+                />
+                <label class="radio-label" for="wire-transfer">
+                  <i class="fas fa-money-check-alt"></i>
+                  Transferencia bancaria
+                </label>
+              </div>
+              <div id="payment-form-container" class="payment-form-container">
+                <div class="card-number-and-code">
+                  <div class="input-control">
+                    <label for="card-number">Número de tarjeta</label>
+                    <input
+                      form="cart-form"
+                      name="card-number"
+                      id="card-number"
+                      type="number"
+                    />
+                  </div>
+                  <div class="input-control">
+                    <label for="card-code">Código de seg.</label>
+                    <input
+                      form="cart-form"
+                      name="card-code"
+                      id="card-code"
+                      type="number"
+                    />
+                  </div>
+                </div>
+                <div class="input-control">
+                  <label for="expired-date">Vencimiento (MM/AA)</label>
+                  <input
+                    form="cart-form"
+                    name="expired-date"
+                    id="expired-date"
+                    type="text"
+                  />
+                </div>
+              </div>
             </div>
           </div>
-          <div class="input-control">
-            <label for="expired-date">Vencimiento (MM/AA)</label>
-            <input id="expired-date" type="text" />
+        </div>
+        <div>
+          <hr class="my-3" />
+          <h4>Método de envio</h4>
+          <div class="cart-shipping-container">
+            <select name="cart-shipping" id="cart-shipping">
+              <option value="5" selected>Standar 5% (12 a 15 días)</option>
+              <option value="7">Express 7% (5-8 días)</option>
+              <option value="15">Premium 15% (2-5 días</option>
+            </select>
           </div>
-        </div>
-      </div>
-      <div>
-        <hr class="my-3" />
-        <h4>Método de envio</h4>
-        <div class="cart-shipping-container">
-          <select name="" id="cart-shipping">
-            <option value="5" selected>Standar (12 a 15 días)</option>
-            <option value="7">Express (5-8 días)</option>
-            <option value="15">Premium (2-5 días</option>
-          </select>
-        </div>
 
-        <div class="shipping-address-container">
-          <div class="street-and-street-number">
-            <div class="input-control">
-              <label for="street">Calle</label>
-              <input id="street" type="text" />
+          <div class="shipping-address-container">
+            <div class="street-and-street-number">
+              <div class="input-control">
+                <label for="street">Calle</label>
+                <input name="street" id="street" type="text" />
+              </div>
+              <div class="input-control">
+                <label for="street-number">Numero</label>
+                <input name="street-number" id="street-number" type="number" />
+              </div>
             </div>
             <div class="input-control">
-              <label for="street-number">Numero</label>
-              <input id="street-number" type="number" />
+              <label for="street-corner">Esquina</label>
+              <input name="street-corner" id="street-corner" type="text" />
             </div>
-          </div>
-          <div class="input-control">
-            <label for="street-corner">Esquina</label>
-            <input id="street-corner" type="text" />
           </div>
         </div>
-      </div>
+      </form>
 
       <div>
         <hr class="my-3" />
@@ -180,9 +212,13 @@
           </div>
         </strong>
       </div>
-
+      <div class="error-message-container">
+        <p id="error-message-text"></p>
+      </div>
       <div class="control-buttons">
-        <button class="btn btn-primary">Finalizar compra</button>
+        <button type="submit" form="cart-form" class="btn btn-primary">
+          Finalizar compra
+        </button>
       </div>
     </div>
 

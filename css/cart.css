@@ -94,6 +94,11 @@
   -moz-appearance: textfield;
 }
 
+/*Tenemos el input de cantidad de productos en disbled por ello modificamos el color de su texto */
+.article-count input:disabled {
+  color: black;
+}
+
 .article-count button {
   font-size: 15px;
   font-weight: bold;
@@ -161,9 +166,57 @@
 
 /*Seccion correspondiente a la forma de pago */
 
+.modal-container {
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+.modal-hidden {
+  display: none;
+}
+
+.modal-visible {
+  display: flex;
+}
+
+.modal-form {
+  background-color: white;
+  padding: 20px;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+
+  border-radius: 5px;
+}
+
+.close-button {
+  align-self: flex-end;
+  border: none;
+  background-color: unset;
+  padding-left: 10px;
+}
+
+.close-button:hover {
+  transform: scale(1.1, 1.1);
+}
+
+.close-button:focus {
+  outline: none;
+}
+
+.close-button:active {
+  transform: unset;
+}
+
 .payment {
   max-width: 500px;
-  margin-top: 30px;
+  margin-top: 10px;
   display: flex;
   justify-content: center;
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.25);
@@ -226,6 +279,15 @@ i {
 .currency p {
   margin: 0;
   padding: 0;
+}
+
+/*Seccion correspondiente al mensaje de error en caso de que exista */
+.error-message-container {
+  height: 15px;
+}
+
+.error-message-container p {
+  color: red;
 }
 
 /*Seccion correspondiente a los "botones de control" finalizar compra y demas */
